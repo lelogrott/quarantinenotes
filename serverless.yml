@@ -1,0 +1,76 @@
+service: serverless-flask
+
+plugins:
+  - serverless-python-requirements
+  - serverless-wsgi
+  - serverless-dynamodb-local
+
+custom:
+  tableName: 'notes-table-${self:provider.stage}'
+  wsgi:
+    app: app.app
+    packRequirements: false
+  pythonRequirements:
+    dockerizePip: non-linux
+  dynamodb:
+    start:
+      migrate: true
+    stages:
+      - dev
+
+provider:
+  name: aws
+  runtime: python3.6
+  stage: dev
+  region: us-east-1
+  profile: quarantineNotesProfile
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource:
+        - { "Fn::GetAtt": ["NotesDynamoDBTable", "Arn" ] }
+  environment:
+    NOTES_TABLE: ${self:custom.tableName}
+
+functions:
+  app:
+    handler: wsgi.handler
+    events:
+      - http: ANY /
+      - http: 'ANY {proxy+}'
+  getNote:
+    handler: wsgi.handler
+    events:
+      - http: 'GET /notes/{proxy+}'
+  createNote:
+    handler: wsgi.handler
+    events:
+      - http: 'POST /notes'
+  listNotes:
+    handler: wsgi.handler
+    events:
+      - http: 'GET /'
+
+resources:
+  Resources:
+    NotesDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: noteId
+            AttributeType: S
+        KeySchema:
+          -
+            AttributeName: noteId
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
+        TableName: ${self:custom.tableName}

@@ -1,0 +1,25 @@
+{
+  "name": "quarantinenotes",
+  "version": "1.0.0",
+  "description": "Notes from people on quarantine around the globe.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lelogrott/quarantinenotes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lelogrott/quarantinenotes/issues"
+  },
+  "homepage": "https://github.com/lelogrott/quarantinenotes#readme",
+  "devDependencies": {
+    "serverless-dynamodb-local": "^0.2.39",
+    "serverless-python-requirements": "^5.1.0",
+    "serverless-wsgi": "^1.7.4"
+  }
+}
