@@ -1,0 +1,113 @@
+.single-note-details-item {
+  background: $email-card-bg;
+  margin: 40px;
+  padding: 70px 66px;
+  box-shadow: 0px 0px 15px 2px rgba(0,0,0,.4);
+
+  .head-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+        color: #fff!important;
+        font-size: 30px;
+        font-weight: 600;
+    }
+
+    .time {
+        font-size: 16px;
+        color: $primary-color;
+        text-transform: capitalize;
+    }
+  }
+
+  .head-subject {
+    font-size: 22px;
+    font-weight: 600;
+    color: $primary-color;
+    margin-top: 12px;
+  }
+
+  .body-part {
+    margin: 25px 0 0;
+
+    h5,p{
+        font-size: 18px;
+        color: $primary-color;
+        line-height: 1.8;
+    }
+
+    p{margin-bottom:30px;}
+  }
+
+  .source-file {
+    width: 240px;
+    height: 70px;
+    background: #434c67;
+    border-radius: 5px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .img {
+      width: 30%;
+      background: #7259f3;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .txt {
+      width: 70%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      height: 100%;
+      margin-left: 15px;
+    }
+
+    .txt h4,.txt p {
+        font-size: 14px;
+        color: #fff!important;
+    }
+
+    .txt h4{margin-top: 15px;}
+  }
+
+  .comment {
+    position: relative;
+    margin-top: 47px;
+    height: 110px;
+
+  }
+  .comment textarea {
+    border: 2px dashed #6f7993;
+    width: 100%;
+    border-radius: 5px;
+    color: $primary-color;
+    font-size: 18px;
+    height: 110px;
+  }
+
+  .comment textarea[placeholder]{
+    color: $primary-color;
+    padding: 20px 34px;
+  }
+
+  .scroll-top {
+    position: absolute;
+    top: 30px;
+    right: -25px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    @include compose-btn;
+    cursor: pointer;
+  }
+
+ }

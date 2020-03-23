@@ -1,0 +1,40 @@
+// Wide Srcreen
+@include mediaXl {
+
+}
+
+// media 1199px
+@include media1199 {
+   .crad-head { flex-direction: column; }
+   .card-left-side {height: 54vh;}
+}
+
+// Desktop & Laptop
+@include mediaLg {
+   
+}
+
+// Tablet & small laptop
+@include mediaMd {
+   #core-drawer-toolbar .topbar .logo { margin: 0 0 0 40px;}
+}
+
+// media 991px
+@include media991 {
+   
+}
+
+// Smart Phone
+@include mediaSm {
+   #core-drawer-toolbar .topbar .v-toolbar__title{font-size: 12px;}
+   #core-drawer-toolbar .topbar .v-menu.v-menu--inline {margin: 0 0px;}
+   #core-drawer-toolbar .topbar .logo { margin: 0 0 0 25px;}
+   #core-drawer-toolbar .topbar .topbaricon .v-icon {font-size: 25px;margin: 0 0 0 5px;}
+   .avater img {display: none;}
+
+   .card-left-side { height: 40vh;}
+   .single-mail-details-item {padding: 78px 30px 90px;}
+   .single-mail-details-item .head-top { flex-direction: column;align-items: end; }
+   .single-mail-details-item .head-subject {font-size: 16px;}
+
+}

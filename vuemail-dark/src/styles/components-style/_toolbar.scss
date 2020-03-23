@@ -1,0 +1,65 @@
+#core-drawer-toolbar{
+   box-shadow: 1px 2px 3px rgba(0, 126, 197, 0.1);
+   .topbar {
+      &.v-toolbar--fixed {z-index: 10;}
+
+      .logo {
+         margin: 0 0 0 90px;
+         cursor: pointer;
+         img {height: 22px;}
+      }
+
+      .topbaricon{
+         .v-icon {
+            color: $secondary-color  ;
+            font-size: 36px;
+            cursor: pointer;
+            margin:0 0 0 15px;
+         }   
+      }
+      
+      .v-toolbar__content{padding: 0;}
+
+      .v-menu.notification-menu{
+
+         span.v-badge__badge{
+            top: -9px;
+            right: -5px;
+            &.error {
+               width: 20px;
+               height: 20px;
+               font-size: 9px;
+            }
+         }
+      } 
+      
+      .v-toolbar__title {
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         font-size: 18px;
+         .avater{margin-right: 13px;}
+         span{
+            color: #fff;
+            svg {
+               position: relative;
+               top: 3px;
+               width: 14px;
+               height: 14px;
+            }
+         }
+         
+      }
+
+      .v-menu.v-menu--inline {
+         margin: 0 20px;
+      }
+   }
+}
+
+.v-menu__content.theme--light.menuable__content__active.notification-menu,
+.v-menu__content.theme--light.menuable__content__active.profile-menu {
+   top: 75px!important;
+   box-shadow: $card-box-shadow;
+   border-top : 3px solid $secondary-color;
+}

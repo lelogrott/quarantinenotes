@@ -1,0 +1,52 @@
+/*==================================
+* Author        : "ThemeSINE"
+* Template Name : DavLoon
+* Version       : 1.0
+==================================== */
+
+/*==================================
+font-family: 'Poppins', sans-serif;
+==================================== */
+*{
+   padding: 0;
+   margin: 0;
+   -webkit-box-sizing: border-box;
+   -ms-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   box-sizing: border-box;
+}
+
+body{
+   background-color: $body-bg;
+   font-size: $body-font-size ;
+   color: $primary-color;
+   font-family: $body-font-family ;
+   overflow: hidden;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	margin: 0;
+	color: $heading-color;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+a,a:hover,a:focus,a:active{
+  text-decoration: none;
+  color: $link-color;
+}
+a:hover,a:focus,a:active{color: $secondary-color;}
+
+
+input:focus,button:focus,a:focus,textarea:focus{
+  outline: 0!important;
+}
+
+main.v-content {
+  margin-top: 80px;
+  background-color: $body-bg;
+}
+
+.container {
+  padding: 0px;
+}

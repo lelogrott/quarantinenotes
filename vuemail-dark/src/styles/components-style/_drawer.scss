@@ -1,0 +1,60 @@
+// drawer
+
+.v-navigation-drawer--fixed {
+  position: fixed;
+  z-index: 9;
+}
+.sidebar{
+  max-height: calc(100% - 0px)!important;
+
+  .primary--text{ color: $secondary-color; }
+
+  .compose-btn {
+    button.v-btn.theme--light {
+      width: 215px;
+      height: 40px;
+      margin: 30px 35px;
+      @include compose-btn;
+    }
+  }
+
+  .v-list__tile {
+    font-size: 18px;
+    padding: 0 35px;
+
+    &.v-list__tile--link {
+      position: relative;
+      height: 52px;
+      @include easeInOut;
+
+      .v-list__tile__action { min-width: 35px; }
+
+      &::before{
+        position: absolute;
+        content: "";
+        top: 14px;
+        left: 0px;
+        width: 3px;
+        height: 20px;
+        border-radius: 1.5px;
+        background-color: $secondary-color;
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      &:hover::before{
+        opacity: 1;
+        visibility: visible;
+      }
+
+    }
+  }
+  
+  .v-list__tile--active.v-list__tile.v-list__tile--link {
+    @include easeInOut;
+    &::before { opacity: 1; visibility: visible; }
+  }
+  
+  .theme--light.v-list .v-list__tile--link:hover { background: transparent; }
+
+}

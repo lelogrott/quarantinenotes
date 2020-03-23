@@ -1,0 +1,27 @@
+// toolbar
+.v-toolbar {
+   background-color: $toolbar-bg  ;
+   color: $toolbar-text-color ;
+}
+
+// navigation-drawer
+.v-navigation-drawer {
+   background-color: $sidebar-bg;
+   padding: 80px 0 0;
+}
+
+// .v-list--dense
+.v-list--dense {
+   padding-top: 0!important;
+   padding-bottom: 0!important;
+}
+
+// error
+.v-badge__badge {
+   font-size: 12px;
+   &.error {
+      background-color: $badge-color;
+      border-color: $badge-border-color;
+      border: 3px solid;
+   }
+}

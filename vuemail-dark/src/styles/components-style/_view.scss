@@ -1,0 +1,98 @@
+.v-enter,.v-leave-to{opacity: 0;}
+.v-enter-active,.v-leave-active{transition: opacity .5s;}
+
+h2{
+   color: #fff!important;
+}
+
+// inbox.vue part
+.inbox {
+   position: relative;
+}
+.card-left-side,.card-right-side{
+   box-shadow: 0 0px 5px rgba(0,0,0,.5)!important;
+   height:66vh;
+   overflow-y: scroll;
+   -ms-overflow-style: -ms-autohiding-scrollbar;
+   -webkit-overflow-scrolling: touch;
+
+   &.card-left-side-ui-design {
+      &::-webkit-scrollbar {width: 5px;}
+      &::-webkit-scrollbar-track {
+         -webkit-box-shadow: inset 0 0 8px transparent;
+         box-shadow: inset 0 0 8px transparent
+      }
+      &::-webkit-scrollbar-thumb {background-color:rgba(61,151,227,.2);}
+   }
+}
+.card-index {
+   position: relative;
+   display: flex;
+   align-items: baseline;
+   padding: 30px 40px;
+   background: $email-card-bg;
+   border-bottom: 1px solid #000;
+   @include easeInOut;
+
+   &::before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: #4698e5;
+      opacity: 0;
+      visibility: hidden;
+      @include easeInOut;
+   }
+}
+
+.card-circle {
+   width: 12px;
+   height: 12px;
+   border-radius: 50%;
+
+   &.inbox {background: #35b91e;}
+   &.sent {background: #7259f3;}
+}
+.card-info {
+   margin: 22px 0 22px 0;
+   width: 100%;
+   color: $primary-color;
+}
+
+.card-head{
+   display: flex;
+   align-items: baseline;
+   justify-content: space-between;
+
+   h3 {
+      a{
+         font-size: 18px;
+         @include easeInOut;
+      }
+   }
+
+   .card-date {
+      font-size: 14px;
+      @include easeInOut;
+   }
+}
+
+.card-para {
+   font-size: 16px;
+   color: $card-info-para;
+   margin: 23px 0 0;
+   @include easeInOut;
+}
+
+.card-index:hover,.active {
+   background: #2a324e!important;
+
+   &::before {visibility:visible;opacity: 1;}
+
+   .crad-head{h3{a{color: #fff!important;}}}
+   .card-para{color: #fff!important;}
+   .card-date{color: #87c2ff!important;}
+}
