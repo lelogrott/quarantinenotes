@@ -3,9 +3,9 @@
     <!-- toolbarr start -->
     <v-toolbar flat class="topbar" :height="height" fixed>
 
-      <div v-if="responsive" class="topbaricon" @click.stop="drawer = !drawer">
+      <!-- <div v-if="responsive" class="topbaricon" @click.stop="drawer = !drawer">
         <v-icon>mdi-menu</v-icon>
-      </div>
+      </div> -->
 
       <div class="logo">
         <img src="assets/img/logo/logo.png" alt="logo">

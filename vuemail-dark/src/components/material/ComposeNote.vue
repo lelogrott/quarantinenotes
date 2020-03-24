@@ -1,6 +1,6 @@
 <template>
   <div  class="compose-note">
-    <v-container grid-list-md>
+    <v-container grid-list-md pb-2>
 
       <v-layout row wrap>
         <v-flex lg4 md6 sm12 xs12>
@@ -9,7 +9,7 @@
             :counter="20"
             :rules="nameRules"
             label="Name"
-            required
+            dark
           ></v-text-field>
         </v-flex>
         <v-flex lg4 md6 sm12 xs12>
@@ -18,9 +18,8 @@
             item-text="friendly_name"
             item-value="id"
             :items="countries"
-            :rules="[v => !!v || 'Country is required']"
             label="Country"
-            required
+            dark
           ></v-select>
         </v-flex>
       </v-layout>
@@ -42,8 +41,7 @@ export default {
     return {
       name: null,
       nameRules: [
-        v => !!v || 'Name is required',
-        v => (v && v.length <= 20) || 'Name must be less than 20 characters',
+        v => (v.length <= 20) || 'Name must be less than 20 characters'
       ],
       select: null,
       countries: this.$store.state.countriesData.countriesInfo
