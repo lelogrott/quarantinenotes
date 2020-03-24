@@ -8,8 +8,7 @@
         </div>
       </div>
       <div class="head-subject">
-        <!-- {{noteDetailsData.subject}} -->
-        Subject
+        {{getCountry(noteDetailsData.country)}}
       </div>
     </div>
     <div class="body-part">
@@ -39,8 +38,15 @@
           }, 1500);
           return false;
         });
+      },
+      getCountry(id) {
+        let countries = this.$store.state.countriesData.countriesInfo;
+        for (var i = countries.length - 1; i >= 0; i--) {
+          if (id == countries[i].id)
+            return countries[i].friendly_name;
+        }
+        return 'Unknown';
       }
     }
   }
 </script>
-

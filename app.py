@@ -71,7 +71,7 @@ def get_note(note_id):
 def create_note():
     content = request.json.get('content')
     author = request.json.get('author') or 'Anonymous'
-    country = request.json.get('country')
+    country = request.json.get('country') or 'Unknown'
     note_id = uuid.uuid4().hex
     created_at = strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
     if not note_id or not content:

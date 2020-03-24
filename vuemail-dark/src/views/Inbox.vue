@@ -20,6 +20,7 @@
                   <h3><a>{{item.author}}</a></h3>
                   <div class="card-date">{{new Date(item.createdAt) | moment("MMM Do h:mmA") }}</div>
                 </div>
+                <a>{{item.country}}</a>
                 <div class="card-para">
                   {{item.content}}
                 </div>
@@ -69,4 +70,3 @@
     }
   }
 </script>
-
