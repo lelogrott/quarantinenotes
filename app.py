@@ -18,7 +18,7 @@ else:
     client = boto3.client('dynamodb')
 
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def list_notes():
     country = request.args.get('country')
     if country:

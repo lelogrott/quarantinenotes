@@ -45,6 +45,8 @@
 </template>
 
 <script>
+  import RepositoryFactory from './../repositories'
+  const NotesRepository = RepositoryFactory.get('notes')
 
   export default {
     name: 'inbox',
@@ -65,7 +67,8 @@
         return this.$store.state.notesData.notesInfo;
       },
       inboxData() {
-        return this.$store.state.notesData.notesInfo;
+        console.log(NotesRepository.get());
+        return NotesRepository.get();
       }
     }
   }

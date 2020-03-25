@@ -39,7 +39,7 @@
 export default {
   data () {
     return {
-      name: null,
+      name: '',
       nameRules: [
         v => (v.length <= 20) || 'Name must be less than 20 characters'
       ],
