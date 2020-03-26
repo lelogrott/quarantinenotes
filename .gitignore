@@ -2,5 +2,3 @@
 node_modules/
 vuemail-dark/node_modules/
 .serverless/
-.dynamodb/
-venv
