@@ -2,11 +2,12 @@ import os
 import boto3
 import uuid
 from time import gmtime, strftime
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
 app = Flask(__name__)
 
 NOTES_TABLE = os.environ['NOTES_TABLE']
 IS_OFFLINE = os.environ.get('IS_OFFLINE')
+RESPONSE_HEADERS =  { 'Access-Control-Allow-Origin': '*' }
 
 if IS_OFFLINE:
     client = boto3.client(
@@ -43,7 +44,8 @@ def list_notes():
             'country': item.get('country').get('S'),
             'createdAt': item.get('createdAt').get('S')
         })
-    return jsonify(notes)
+
+    return make_response(jsonify(notes), 200, RESPONSE_HEADERS)
 
 
 @app.route("/notes/<string:note_id>")

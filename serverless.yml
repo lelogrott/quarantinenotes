@@ -43,22 +43,40 @@ functions:
     handler: wsgi.handler
     events:
       - http: ANY /
+        cors: true
       - http: 'ANY {proxy+}'
+        cors:
+          origin: '*'
   getNote:
     handler: wsgi.handler
     events:
       - http: 'GET /notes/{proxy+}'
+        cors:
+          origin: '*'
   createNote:
     handler: wsgi.handler
     events:
       - http: 'POST /notes'
+        cors:
+          origin: '*'
   listNotes:
     handler: wsgi.handler
     events:
       - http: 'GET /'
+        cors:
+          origin: '*'
 
 resources:
   Resources:
+    GatewayResponseDefault4XX:
+      Type: 'AWS::ApiGateway::GatewayResponse'
+      Properties:
+        ResponseParameters:
+          gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
+          gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
+        ResponseType: DEFAULT_4XX
+        RestApiId:
+          Ref: 'ApiGatewayRestApi'
     NotesDynamoDBTable:
       Type: 'AWS::DynamoDB::Table'
       Properties:

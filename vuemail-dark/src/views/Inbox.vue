@@ -14,7 +14,7 @@
           <div class="card-left-side card-left-side-ui-design">
 
             <div v-on:click="activate(i, item.noteId)"
-              v-bind:class="{active: item.noteId == selected}" class="card-index" v-for="(item,i) in inboxData" :key="i">
+              v-bind:class="{active: item.noteId == selected}" class="card-index" v-for="(item,i) in notes" :key="i">
               <div class="card-info">
                 <div class="card-head">
                   <h3><a>{{item.author}}</a></h3>
@@ -31,9 +31,9 @@
 
         </v-flex>
 
-        <v-flex lg8 md6 sm12 xs12>
+        <v-flex v-if="!isLoading" lg8 md6 sm12 xs12>
           <div class="card-right-side card-left-side-ui-design">
-            <single-mail-details :noteDetailsData="inboxData[note]" />
+            <single-mail-details :noteDetailsData="notes[note]" />
           </div>
         </v-flex>
 
@@ -53,22 +53,24 @@
     data() {
       return {
         selected: undefined,
-        note : '0'
+        note : '0',
+        notes: [],
+        isLoading: false
       }
+    },
+    created() {
+      this.fetchNotes()
     },
     methods: {
       activate: function (index, elementId) {
         this.selected = elementId
         this.note = index
-      }
-    },
-    computed : {
-      notesData() {
-        return this.$store.state.notesData.notesInfo;
       },
-      inboxData() {
-        console.log(NotesRepository.get());
-        return NotesRepository.get();
+      async fetchNotes() {
+        this.isLoading = true;
+        let response = await NotesRepository.get();
+        this.notes = response.data;
+        this.isLoading = false;
       }
     }
   }
