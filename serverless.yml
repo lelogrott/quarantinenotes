@@ -43,28 +43,89 @@ functions:
     handler: wsgi.handler
     events:
       - http: ANY /
-        cors: true
+        cors:
+          origins: '*'
+          headers:
+            - Accept
+            - Origin
+            - DNT
+            - User-Agent
+            - Referer
+            - Content-Type
+            - X-Amz-Date
+            - x-amz-date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
       - http: 'ANY {proxy+}'
         cors:
-          origin: '*'
+          origins: '*'
+          headers:
+            - Accept
+            - Origin
+            - DNT
+            - User-Agent
+            - Referer
+            - Content-Type
+            - X-Amz-Date
+            - x-amz-date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
   getNote:
     handler: wsgi.handler
     events:
       - http: 'GET /notes/{proxy+}'
         cors:
-          origin: '*'
+          origins: '*'
+          headers:
+            - Accept
+            - Origin
+            - DNT
+            - User-Agent
+            - Referer
+            - Content-Type
+            - X-Amz-Date
+            - x-amz-date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
   createNote:
     handler: wsgi.handler
     events:
       - http: 'POST /notes'
         cors:
-          origin: '*'
+          origins: '*'
+          headers:
+            - Accept
+            - Origin
+            - DNT
+            - User-Agent
+            - Referer
+            - Content-Type
+            - X-Amz-Date
+            - x-amz-date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
   listNotes:
     handler: wsgi.handler
     events:
       - http: 'GET /'
         cors:
-          origin: '*'
+          origins: '*'
+          headers:
+            - Accept
+            - Origin
+            - DNT
+            - User-Agent
+            - Referer
+            - Content-Type
+            - X-Amz-Date
+            - x-amz-date
+            - Authorization
+            - X-Api-Key
+            - X-Amz-Security-Token
 
 resources:
   Resources:
@@ -74,7 +135,9 @@ resources:
         ResponseParameters:
           gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
           gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
-        ResponseType: DEFAULT_4XX
+        ResponseType:
+          - DEFAULT_4XX
+          - DEFAULT_5XX
         RestApiId:
           Ref: 'ApiGatewayRestApi'
     NotesDynamoDBTable:

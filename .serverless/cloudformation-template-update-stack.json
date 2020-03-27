@@ -183,7 +183,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-flask/dev/1585190338795-2020-03-26T02:38:58.795Z/serverless-flask.zip"
+          "S3Key": "serverless/serverless-flask/dev/1585280079071-2020-03-27T03:34:39.071Z/serverless-flask.zip"
         },
         "FunctionName": "serverless-flask-dev-app",
         "Handler": "wsgi_handler.handler",
@@ -207,14 +207,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "AppLambdaVersionialpmdGfIfPKIZtEOeoM2ADgsFTbhWyLFrPlcm3S1sY": {
+    "AppLambdaVersion8lzvP0eGl9qEQOY0A9lg3TjRbwwyJv2twRH4qJFnEQ": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "Hcs8Y2pjG9T/Qw7zq1MJDeccssQRJKAJzKLdMLio9T4="
+        "CodeSha256": "gTdfjKTBn3W65gCWVdH+zFyCw1ExcQMGtWadfWPxMFU="
       }
     },
     "GetNoteLambdaFunction": {
@@ -224,7 +224,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-flask/dev/1585190338795-2020-03-26T02:38:58.795Z/serverless-flask.zip"
+          "S3Key": "serverless/serverless-flask/dev/1585280079071-2020-03-27T03:34:39.071Z/serverless-flask.zip"
         },
         "FunctionName": "serverless-flask-dev-getNote",
         "Handler": "wsgi_handler.handler",
@@ -248,14 +248,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "GetNoteLambdaVersion1WoICAp5F2lqKwcUdSsAQQ2Y2OaxemWkf9u6Rm6qK8": {
+    "GetNoteLambdaVersionY7ArR2bHhV0AiXNcgvSCBMFxekHuPwXofTxPCUCOmVg": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GetNoteLambdaFunction"
         },
-        "CodeSha256": "Hcs8Y2pjG9T/Qw7zq1MJDeccssQRJKAJzKLdMLio9T4="
+        "CodeSha256": "gTdfjKTBn3W65gCWVdH+zFyCw1ExcQMGtWadfWPxMFU="
       }
     },
     "CreateNoteLambdaFunction": {
@@ -265,7 +265,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-flask/dev/1585190338795-2020-03-26T02:38:58.795Z/serverless-flask.zip"
+          "S3Key": "serverless/serverless-flask/dev/1585280079071-2020-03-27T03:34:39.071Z/serverless-flask.zip"
         },
         "FunctionName": "serverless-flask-dev-createNote",
         "Handler": "wsgi_handler.handler",
@@ -289,14 +289,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "CreateNoteLambdaVersion0LqZ8VlbpB9udRH4UtnSMF4iBng90rulhTZj1x5Mo": {
+    "CreateNoteLambdaVersionnkJcydbcsgCvjYIwLEnA9QjllNEJio5JmeGOrkKGA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "CreateNoteLambdaFunction"
         },
-        "CodeSha256": "Hcs8Y2pjG9T/Qw7zq1MJDeccssQRJKAJzKLdMLio9T4="
+        "CodeSha256": "gTdfjKTBn3W65gCWVdH+zFyCw1ExcQMGtWadfWPxMFU="
       }
     },
     "ListNotesLambdaFunction": {
@@ -306,7 +306,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/serverless-flask/dev/1585190338795-2020-03-26T02:38:58.795Z/serverless-flask.zip"
+          "S3Key": "serverless/serverless-flask/dev/1585280079071-2020-03-27T03:34:39.071Z/serverless-flask.zip"
         },
         "FunctionName": "serverless-flask-dev-listNotes",
         "Handler": "wsgi_handler.handler",
@@ -330,14 +330,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "ListNotesLambdaVersionovqv2iQSS39ZpFNPki1PDJ9Oghg8ecZDAjM1bJ5cik": {
+    "ListNotesLambdaVersionWufDXAZnCSEiX4lBzLwRRD0YWXYzADA461xOTlajqaU": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "ListNotesLambdaFunction"
         },
-        "CodeSha256": "Hcs8Y2pjG9T/Qw7zq1MJDeccssQRJKAJzKLdMLio9T4="
+        "CodeSha256": "gTdfjKTBn3W65gCWVdH+zFyCw1ExcQMGtWadfWPxMFU="
       }
     },
     "ApiGatewayRestApi": {
@@ -615,7 +615,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1585190302027": {
+    "ApiGatewayDeployment1585280043749": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -786,7 +786,10 @@
           "gatewayresponse.header.Access-Control-Allow-Origin": "'*'",
           "gatewayresponse.header.Access-Control-Allow-Headers": "'*'"
         },
-        "ResponseType": "DEFAULT_4XX",
+        "ResponseType": [
+          "DEFAULT_4XX",
+          "DEFAULT_5XX"
+        ],
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -824,25 +827,25 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionialpmdGfIfPKIZtEOeoM2ADgsFTbhWyLFrPlcm3S1sY"
+        "Ref": "AppLambdaVersion8lzvP0eGl9qEQOY0A9lg3TjRbwwyJv2twRH4qJFnEQ"
       }
     },
     "GetNoteLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GetNoteLambdaVersion1WoICAp5F2lqKwcUdSsAQQ2Y2OaxemWkf9u6Rm6qK8"
+        "Ref": "GetNoteLambdaVersionY7ArR2bHhV0AiXNcgvSCBMFxekHuPwXofTxPCUCOmVg"
       }
     },
     "CreateNoteLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "CreateNoteLambdaVersion0LqZ8VlbpB9udRH4UtnSMF4iBng90rulhTZj1x5Mo"
+        "Ref": "CreateNoteLambdaVersionnkJcydbcsgCvjYIwLEnA9QjllNEJio5JmeGOrkKGA"
       }
     },
     "ListNotesLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "ListNotesLambdaVersionovqv2iQSS39ZpFNPki1PDJ9Oghg8ecZDAjM1bJ5cik"
+        "Ref": "ListNotesLambdaVersionWufDXAZnCSEiX4lBzLwRRD0YWXYzADA461xOTlajqaU"
       }
     },
     "ServiceEndpoint": {

@@ -7,7 +7,12 @@ app = Flask(__name__)
 
 NOTES_TABLE = os.environ['NOTES_TABLE']
 IS_OFFLINE = os.environ.get('IS_OFFLINE')
-RESPONSE_HEADERS =  { 'Access-Control-Allow-Origin': '*' }
+RESPONSE_HEADERS =  {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': '*',
+    'Access-Control-Allow-Credentials': 'true',
+    'Content-Type': 'application/json'
+}
 
 if IS_OFFLINE:
     client = boto3.client(
@@ -60,13 +65,17 @@ def get_note(note_id):
     if not item:
         return jsonify({'error': 'Note does not exist'}), 404
 
-    return jsonify({
-        'noteId': item.get('noteId').get('S'),
-        'content': item.get('content').get('S'),
-        'author': item.get('author').get('S'),
-        'country': item.get('country').get('S'),
-        'createdAt': item.get('createdAt').get('S')
-    })
+    return make_response(
+        jsonify({
+            'noteId': item.get('noteId').get('S'),
+            'content': item.get('content').get('S'),
+            'author': item.get('author').get('S'),
+            'country': item.get('country').get('S'),
+            'createdAt': item.get('createdAt').get('S')
+        }),
+        200,
+        RESPONSE_HEADERS
+    )
 
 
 @app.route("/notes", methods=["POST"])
@@ -90,10 +99,14 @@ def create_note():
         }
     )
 
-    return jsonify({
-        'noteId': note_id,
-        'content': content,
-        'author': author,
-        'country': country,
-        'createdAt': created_at
-    })
+    return make_response(
+        jsonify({
+            'noteId': note_id,
+            'content': content,
+            'author': author,
+            'country': country,
+            'createdAt': created_at
+        }),
+        200,
+        RESPONSE_HEADERS
+    )
