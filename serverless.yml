@@ -12,6 +12,7 @@ custom:
     packRequirements: false
   pythonRequirements:
     dockerizePip: non-linux
+    usePipenv: true
   dynamodb:
     start:
       migrate: true
@@ -43,103 +44,12 @@ functions:
     handler: wsgi.handler
     events:
       - http: ANY /
-        cors:
-          origins: '*'
-          headers:
-            - Accept
-            - Origin
-            - DNT
-            - User-Agent
-            - Referer
-            - Content-Type
-            - X-Amz-Date
-            - x-amz-date
-            - Authorization
-            - X-Api-Key
-            - X-Amz-Security-Token
-      - http: 'ANY {proxy+}'
-        cors:
-          origins: '*'
-          headers:
-            - Accept
-            - Origin
-            - DNT
-            - User-Agent
-            - Referer
-            - Content-Type
-            - X-Amz-Date
-            - x-amz-date
-            - Authorization
-            - X-Api-Key
-            - X-Amz-Security-Token
-  getNote:
-    handler: wsgi.handler
-    events:
-      - http: 'GET /notes/{proxy+}'
-        cors:
-          origins: '*'
-          headers:
-            - Accept
-            - Origin
-            - DNT
-            - User-Agent
-            - Referer
-            - Content-Type
-            - X-Amz-Date
-            - x-amz-date
-            - Authorization
-            - X-Api-Key
-            - X-Amz-Security-Token
-  createNote:
-    handler: wsgi.handler
-    events:
-      - http: 'POST /notes'
-        cors:
-          origins: '*'
-          headers:
-            - Accept
-            - Origin
-            - DNT
-            - User-Agent
-            - Referer
-            - Content-Type
-            - X-Amz-Date
-            - x-amz-date
-            - Authorization
-            - X-Api-Key
-            - X-Amz-Security-Token
-  listNotes:
-    handler: wsgi.handler
-    events:
-      - http: 'GET /'
-        cors:
-          origins: '*'
-          headers:
-            - Accept
-            - Origin
-            - DNT
-            - User-Agent
-            - Referer
-            - Content-Type
-            - X-Amz-Date
-            - x-amz-date
-            - Authorization
-            - X-Api-Key
-            - X-Amz-Security-Token
+        cors: true
+      - http: ANY {proxy+}
+        cors: true
 
 resources:
   Resources:
-    GatewayResponseDefault4XX:
-      Type: 'AWS::ApiGateway::GatewayResponse'
-      Properties:
-        ResponseParameters:
-          gatewayresponse.header.Access-Control-Allow-Origin: "'*'"
-          gatewayresponse.header.Access-Control-Allow-Headers: "'*'"
-        ResponseType:
-          - DEFAULT_4XX
-          - DEFAULT_5XX
-        RestApiId:
-          Ref: 'ApiGatewayRestApi'
     NotesDynamoDBTable:
       Type: 'AWS::DynamoDB::Table'
       Properties:
