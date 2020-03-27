@@ -12,7 +12,6 @@ custom:
     packRequirements: false
   pythonRequirements:
     dockerizePip: non-linux
-    usePipenv: true
   dynamodb:
     start:
       migrate: true
