@@ -52,6 +52,7 @@ def list_notes():
             'country': item.get('country').get('S'),
             'createdAt': item.get('createdAt').get('S')
         })
+    notes = sorted(notes, key=lambda note: note['createdAt'], reverse=True)
 
     return make_response(jsonify(notes), 200, RESPONSE_HEADERS)
 
