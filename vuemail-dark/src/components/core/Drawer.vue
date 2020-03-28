@@ -8,7 +8,8 @@
       </div> -->
 
       <div class="logo">
-        <img src="assets/img/logo/logo.png" alt="logo">
+        <!-- <img src="assets/img/logo/quarantine_notes_icon.png" alt="logo"> -->
+        QUARANTINE NOTES
       </div>
 
 
