@@ -80,7 +80,7 @@
       async fetchNotes() {
         this.isLoading = true;
         let response = await NotesRepository.get();
-        this.notes = response.data.reverse();
+        this.notes = response.data;
         this.isLoading = false;
       }
     }
