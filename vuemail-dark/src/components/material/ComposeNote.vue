@@ -24,22 +24,27 @@
             ></v-select>
           </v-flex>
         </v-layout>
-      </v-container>
 
-      <div class="comment">
-        <v-textarea
-          v-model="note.content"
-          required
-          id="mail-comment"
-          placeholder="How is the quarantine so far?"
-        ></v-textarea>
-        <button
-          :disabled="!valid"
-          @click="handleSubmit"
-          class="scroll-top" type="submit">
-          <i class="flaticon-sent-mail"></i>
-        </button>
-      </div>
+        <v-layout row wrap>
+          <v-flex lg12 md12 sm12 xs12>
+            <div class="comment">
+              <v-textarea
+                v-model="note.content"
+                :rules="noteRules"
+                required
+                id="mail-comment"
+                placeholder="How's the quarantine so far?"
+              ></v-textarea>
+              <button
+                :disabled="!valid"
+                @click="handleSubmit"
+                class="scroll-top" type="submit">
+                <i class="flaticon-sent-mail"></i>
+              </button>
+            </div>
+          </v-flex>
+        </v-layout>
+      </v-container>
       <br>
     </v-form>
   </div>
@@ -60,6 +65,9 @@
         valid: true,
         nameRules: [
           v => (v.length <= 20) || 'Name must be less than 20 characters'
+        ],
+        noteRules: [
+          v => (v.length > 0) || "Ain't you gonna write something?"
         ],
         countries: this.$store.state.countriesData.countriesInfo
       }

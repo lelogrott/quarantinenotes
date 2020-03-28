@@ -33,15 +33,3 @@
 .v-select__selection, .v-text-field__details, .v-select__selection.v-select__selection--comma {
    color: #a5b1ce !important;
 }
-
-.v-input {
-   div, .v-text-field__slot label.primary--text, .v-select__slot label.primary--text  {
-      caret-color: #4698e5 !important;
-      color: #4698e5 !important;
-   }
-}
-
-div.v-input.error--text div.v-input__slot, div.v-messages__message, div.v-input.error--text div.v-counter {
-   color: #ff5252 !important;
-   caret-color: #ff5252 !important;
-}

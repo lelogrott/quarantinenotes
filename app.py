@@ -3,7 +3,10 @@ import boto3
 import uuid
 from time import gmtime, strftime
 from flask import Flask, jsonify, request, make_response
+from flask_cors import CORS
+
 app = Flask(__name__)
+CORS(app)
 
 NOTES_TABLE = os.environ['NOTES_TABLE']
 IS_OFFLINE = os.environ.get('IS_OFFLINE')

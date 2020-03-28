@@ -3,7 +3,7 @@
     <v-container grid-list-md>
 
       <v-layout row wrap>
-        <v-flex lg12 md6 sm12 xs12>
+        <v-flex lg12 md12 sm12 xs12>
           <compose-note />
         </v-flex>
       </v-layout>

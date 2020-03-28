@@ -35,4 +35,54 @@
     cursor: pointer;
   }
 
- }
+  .v-input {
+     div, .v-text-field__slot label.primary--text, .v-select__slot label.primary--text  {
+        caret-color: #4698e5 !important;
+        color: #4698e5 !important;
+     }
+  }
+
+  div.v-input.error--text div.v-input__slot, div.v-messages__message, div.v-input.error--text div.v-counter {
+     color: #ff5252 !important;
+     caret-color: #ff5252 !important;
+  }
+
+  div.v-text-field.v-input--has-state {
+
+    textarea {
+      border-color: #ff5252;
+    }
+
+    .v-input__control>.v-input__slot {
+      &::before, &::after {
+        border: none;
+      }
+    }
+  }
+
+  div.v-text-field.v-input--is-focused {
+
+    textarea {
+      border-color: #4698e5;
+      &::placeholder {
+        font-size: 0px;
+      }
+    }
+
+    .v-input__control {
+      .v-text-field__details {
+        display: none;
+      }
+
+      .v-input__slot {
+        &::before, &::after {
+          border: none;
+        }
+      }
+    }
+  }
+
+  textarea::placeholder {
+    color: #b2b4bc !important;
+  }
+}
