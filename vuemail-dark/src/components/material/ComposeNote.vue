@@ -65,10 +65,10 @@
         },
         valid: true,
         nameRules: [
-          // v => (v.length <= 20) || 'Name must be less than 20 characters'
+          v => (v.length <= 20) || 'Name must be less than 20 characters'
         ],
         noteRules: [
-          // v => (v.length > 0) || "Ain't you gonna write something?"
+          v => (v.length > 0) || "Ain't you gonna write something?"
         ],
         countries: this.$store.state.countriesData.countriesInfo
       }
@@ -78,7 +78,6 @@
         if (this.$refs.form.validate()) {
           var response = await NotesRepository.createNote(this.note);
           EventBus.$emit('note-added', response)
-          this.$refs.form.reset();
         }
       }
     }

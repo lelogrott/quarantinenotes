@@ -4,7 +4,7 @@
 
       <v-layout row wrap>
         <v-flex lg12 md12 sm12 xs12>
-          <compose-note />
+          <compose-note :key='composeNoteKey'/>
         </v-flex>
       </v-layout>
 
@@ -56,7 +56,8 @@
         selected: undefined,
         note : '0',
         notes: [],
-        isLoading: false
+        isLoading: false,
+        composeNoteKey: 0
       }
     },
     created() {
@@ -66,6 +67,7 @@
       var vm = this
       EventBus.$on('note-added', function (note) {
         vm.insertNote(note.data);
+        vm.composeNoteKey += 1;
       })
     },
     methods: {
@@ -82,6 +84,7 @@
         let response = await NotesRepository.get();
         this.notes = response.data;
         this.isLoading = false;
+        this.selected = this.notes[0].noteId;
       }
     }
   }
