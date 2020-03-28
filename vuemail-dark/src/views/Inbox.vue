@@ -45,6 +45,7 @@
 </template>
 
 <script>
+  import EventBus from './../eventBus.js'
   import RepositoryFactory from './../repositories'
   const NotesRepository = RepositoryFactory.get('notes')
 
@@ -61,8 +62,18 @@
     created() {
       this.fetchNotes()
     },
+    mounted() {
+      var vm = this
+      EventBus.$on('note-added', function (note) {
+        vm.insertNote(note.data);
+      })
+    },
     methods: {
-      activate: function (index, elementId) {
+      insertNote(note) {
+        this.notes.unshift(note);
+        this.activate(0, note.noteId)
+      },
+      activate(index, elementId) {
         this.selected = elementId
         this.note = index
       },

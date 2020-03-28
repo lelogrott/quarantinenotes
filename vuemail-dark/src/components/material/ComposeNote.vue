@@ -51,6 +51,7 @@
 </template>
 
 <script>
+  import EventBus from './../../eventBus.js'
   import RepositoryFactory from './../../repositories'
   const NotesRepository = RepositoryFactory.get('notes')
 
@@ -64,18 +65,21 @@
         },
         valid: true,
         nameRules: [
-          v => (v.length <= 20) || 'Name must be less than 20 characters'
+          // v => (v.length <= 20) || 'Name must be less than 20 characters'
         ],
         noteRules: [
-          v => (v.length > 0) || "Ain't you gonna write something?"
+          // v => (v.length > 0) || "Ain't you gonna write something?"
         ],
         countries: this.$store.state.countriesData.countriesInfo
       }
     },
     methods: {
-      handleSubmit() {
-        if (this.$refs.form.validate())
-          NotesRepository.createNote(this.note);
+      async handleSubmit() {
+        if (this.$refs.form.validate()) {
+          var response = await NotesRepository.createNote(this.note);
+          EventBus.$emit('note-added', response)
+          this.$refs.form.reset();
+        }
       }
     }
   }
