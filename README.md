@@ -1,5 +1,5 @@
-# quarantinenotes
-Notes from people on quarantine around the globe.
+# Quarantine Notes
+Notes from people on quarantine around the globe. - a serverless app
 
 
 TODO
