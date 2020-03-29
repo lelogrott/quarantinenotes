@@ -81,8 +81,13 @@
       },
       async fetchNotes() {
         this.isLoading = true;
-        let response = await NotesRepository.get();
-        this.notes = response.data;
+        let response = {};
+        if(process.env.NODE_ENV !== 'development') {
+          response = await NotesRepository.get();
+          this.notes = response.data;
+        } else {
+          this.notes = this.$store.state.notesData.notesInfo;
+        }
         this.isLoading = false;
         this.selected = this.notes[0].noteId;
       }
