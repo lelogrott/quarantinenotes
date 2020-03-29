@@ -10,3 +10,11 @@ TODO
   * [ ] integrate with watson to identify which language the note was written in
   * [ ] add filter by language
   * [ ] add filter by country
+
+
+TO run locally
+- clone the repository and `cd quarantinenotes`
+- run `yarn install && yarn --cwd ./vuemail-dark install`
+- run `pipenv install`
+- run `sls wsgi serve` on `./` to run the API locally.
+- run `yarn --cwd ./vuemail-dark serve` to run the site locally
