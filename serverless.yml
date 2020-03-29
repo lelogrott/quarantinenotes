@@ -1,4 +1,7 @@
 service: serverless-flask
+package:
+  exclude:
+    - '!./vuemail-dark/**'
 
 plugins:
   - serverless-python-requirements
@@ -43,9 +46,13 @@ functions:
     handler: wsgi_handler.handler
     events:
       - http: ANY /
-        cors: true
+        cors:
+          origins:
+            - https://quarantinenotes.com
       - http: ANY {proxy+}
-        cors: true
+        cors:
+          origins:
+            - https://quarantinenotes.com
 
 resources:
   Resources:
