@@ -13,11 +13,17 @@
       </div>
 
 
-      <!-- <v-spacer />
+      <v-spacer />
 
       <v-toolbar-items>
         <v-flex align-center justify-center layout>
 
+          <v-menu  bottom left>
+            <v-toolbar-title slot="activator">
+              <small><a target="_blank" href="https://grott.me">grott.me</a></small>
+            </v-toolbar-title>
+          </v-menu>
+<!--
           <v-menu  bottom left  offset-y transition="slide-y-transition" content-class="notification-menu">
             <div  slot="activator" class="toolbar-items" to="/notifications">
               <v-badge color="error" overlap>
@@ -57,10 +63,10 @@
               </v-list>
             </v-card>
 
-          </v-menu>
+          </v-menu> -->
 
         </v-flex>
-      </v-toolbar-items> -->
+      </v-toolbar-items>
 
     </v-toolbar>
     <!-- toolbar end -->
