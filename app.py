@@ -2,6 +2,7 @@ import os
 import boto3
 import uuid
 from time import gmtime, strftime
+from dateutil.parser import *
 from flask import Flask, jsonify, request, make_response
 from flask_cors import CORS
 
@@ -52,7 +53,7 @@ def list_notes():
             'country': item.get('country').get('S'),
             'createdAt': item.get('createdAt').get('S')
         })
-    notes = sorted(notes, key=lambda note: note['createdAt'], reverse=True)
+    notes = sorted(notes, key=lambda note: parse(note['createdAt']), reverse=True)
 
     return make_response(jsonify(notes), 200, RESPONSE_HEADERS)
 
