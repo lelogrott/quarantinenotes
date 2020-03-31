@@ -10,5 +10,8 @@ export default {
   },
   createNote(payload) {
     return Repository.post(`${resource}`, payload);
+  },
+  deleteNote(noteId, password) {
+    return Repository.delete(`${resource}/${noteId}?pwd=${password}`);
   }
 }

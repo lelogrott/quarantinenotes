@@ -19,6 +19,7 @@
                 <div class="card-head">
                   <h3><a>{{item.author}}</a></h3>
                   <div class="card-date">{{new Date(item.createdAt) | moment("MMM Do h:mmA") }}</div>
+                  <delete-note-button v-if="sysAdmin()" :noteId="item.noteId" />
                 </div>
                 <a>{{item.country}}</a>
                 <div class="card-para">
@@ -57,20 +58,28 @@
         note : '0',
         notes: [],
         isLoading: false,
-        composeNoteKey: 0
+        composeNoteKey: 0,
+        dialog: false
       }
     },
     created() {
       this.fetchNotes()
     },
     mounted() {
-      var vm = this
+      var vm = this;
       EventBus.$on('note-added', function (note) {
         vm.insertNote(note.data);
         vm.composeNoteKey += 1;
+      });
+      EventBus.$on('note-deleted', function (response) {
+        console.log('note deleted');
+        console.log(response);
       })
     },
     methods: {
+      sysAdmin() {
+        return this.$route.query.sysAdmin == "true";
+      },
       insertNote(note) {
         this.notes.unshift(note);
         this.activate(0, note.noteId)
