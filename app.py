@@ -58,7 +58,7 @@ def list_notes():
     return make_response(jsonify(notes), 200, RESPONSE_HEADERS)
 
 
-@app.route("/notes/<string:note_id>")
+@app.route("/notes/<string:note_id>", methods=["GET"])
 def get_note(note_id):
     resp = client.get_item(
         TableName=NOTES_TABLE,
@@ -115,3 +115,18 @@ def create_note():
         200,
         RESPONSE_HEADERS
     )
+
+@app.route("/notes/<string:note_id>", methods=["DELETE"])
+def delete_note(note_id):
+    if(request.args.get('pwd') != os.environ['PWD']):
+        return make_response(jsonify({'Error': 'Unauthorized'}), 401, RESPONSE_HEADERS)
+
+    resp = client.delete_item(
+        TableName=NOTES_TABLE,
+        Key={
+            'noteId': { 'S': note_id }
+        },
+        ReturnValues='ALL_OLD'
+    )
+
+    return make_response(jsonify(resp), 200, RESPONSE_HEADERS)

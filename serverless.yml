@@ -40,6 +40,7 @@ provider:
         - { "Fn::GetAtt": ["NotesDynamoDBTable", "Arn" ] }
   environment:
     NOTES_TABLE: ${self:custom.tableName}
+    PWD: fakepwd
 
 functions:
   app:
