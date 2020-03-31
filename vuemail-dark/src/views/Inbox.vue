@@ -74,6 +74,7 @@
       EventBus.$on('note-deleted', function (response) {
         console.log('note deleted');
         console.log(response);
+        vm.removeNote(response.noteId);
       })
     },
     methods: {
@@ -83,6 +84,13 @@
       insertNote(note) {
         this.notes.unshift(note);
         this.activate(0, note.noteId)
+      },
+      removeNote(noteId) {
+        for (var i = this.notes.length - 1; i >= 0; i--) {
+          if(this.notes[i].noteId == noteId) {
+            this.notes.splice(i, 1);
+          }
+        }
       },
       activate(index, elementId) {
         this.selected = elementId

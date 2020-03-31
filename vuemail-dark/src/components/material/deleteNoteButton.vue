@@ -29,8 +29,8 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-            <v-btn color="blue darken-1" text @click="handleSubmit">Delete</v-btn>
+            <v-btn color="grey" text @click="dialog = false">Close</v-btn>
+            <v-btn color="red" text @click="handleSubmit">Delete</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -62,7 +62,7 @@
       async handleSubmit() {
         if (this.$refs.form.validate()) {
           var response = await NotesRepository.deleteNote(this.noteId, this.password);
-          EventBus.$emit('note-deleted', response);
+          EventBus.$emit('note-deleted', { response: response, noteId: this.noteId });
           this.dialog = false;
         }
       }
