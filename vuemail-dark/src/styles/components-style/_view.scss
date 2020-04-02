@@ -8,6 +8,12 @@ h2{
 // inbox.vue part
 .inbox {
    position: relative;
+
+   .loading-progress-area {
+      justify-content: center;
+      align-content:  center;
+      height: 200px;
+   }
 }
 .card-left-side,.card-right-side{
    box-shadow: 0 0px 5px rgba(0,0,0,.5)!important;

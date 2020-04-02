@@ -8,11 +8,17 @@
         </v-flex>
       </v-layout>
 
-      <v-layout row wrap>
+      <v-layout v-if="isLoading" row wrap class="loading-progress-area">
+          <v-progress-circular
+            indeterminate
+            color="#4698e5"
+            :size="70"
+          ></v-progress-circular>
+      </v-layout>
 
+      <v-layout v-else row wrap>
         <v-flex lg4 md6 sm12 xs12>
           <div class="card-left-side card-left-side-ui-design">
-
             <div v-on:click="activate(i, item.noteId)"
               v-bind:class="{active: item.noteId == selected}" class="card-index" v-for="(item,i) in notes" :key="i">
               <div class="card-info">
@@ -32,7 +38,7 @@
 
         </v-flex>
 
-        <v-flex v-if="!isLoading" lg8 md6 sm12 xs12>
+        <v-flex lg8 md6 sm12 xs12>
           <div class="card-right-side card-left-side-ui-design">
             <single-mail-details :noteDetailsData="notes[note]" />
           </div>
