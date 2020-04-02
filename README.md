@@ -10,7 +10,7 @@ TODO
   * [ ] integrate with watson to identify which language the note was written in
   * [ ] add filter by language
   * [ ] add filter by country
-  * [ ] add spinner while waiting for Inbox component to get notes from aws
+  * [x] add spinner while waiting for Inbox component to get notes from aws
 
 
 TO run locally
