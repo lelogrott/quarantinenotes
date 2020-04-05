@@ -13,5 +13,8 @@ export default {
   },
   deleteNote(noteId, password) {
     return Repository.delete(`${resource}/${noteId}?pwd=${password}`);
+  },
+  addNoteReply(noteId, payload) {
+    return Repository.put(`${resource}/${noteId}`, { reply: payload })
   }
 }

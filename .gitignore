@@ -116,5 +116,6 @@ serverless_wsgi.py
 tmp/*
 .DS_Store
 vuemail-dark/node_modules/
+.dynamodb/*
 
 

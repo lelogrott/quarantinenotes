@@ -80,7 +80,6 @@
 
   .comment {
     position: relative;
-    margin-top: 47px;
     height: 110px;
 
   }
@@ -109,6 +108,37 @@
     text-align: center;
     @include compose-btn;
     cursor: pointer;
+  }
+
+  .compose-note {
+    padding: 0;
+    margin-top: 10px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+
+    .container {
+      padding: 0;
+    }
+  }
+
+  .card-left-side-ui-design {
+    height: auto;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+
+    .card-index {
+      &:last-child {
+        border: none;
+      }
+
+      &.active {
+        background: #1e243b !important;
+        padding: 10px 10px 10px 13px;
+      }
+      .card-info {
+        margin: 0;
+      }
+    }
   }
 
  }
