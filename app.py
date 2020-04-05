@@ -164,7 +164,7 @@ def update_note(note_id):
         ReturnValues='ALL_NEW'
     )
 
-    return make_response(jsonify(resp), 200, RESPONSE_HEADERS)
+    return make_response(jsonify(format_response(resp)['replies'].pop()), 200, RESPONSE_HEADERS)
 
 def format_note_replies(notes):
     if notes is None:
@@ -184,3 +184,13 @@ def format_note_replies(notes):
         formatted_notes.append(formatted_note)
 
     return formatted_notes
+
+def format_response(data):
+    return {
+        'author': data.get('Attributes').get('author').get('S'),
+        'content': data.get('Attributes').get('content').get('S'),
+        'country': data.get('Attributes').get('country').get('S'),
+        'createdAt': data.get('Attributes').get('createdAt').get('S'),
+        'noteId': data.get('Attributes').get('noteId').get('S'),
+        'replies': format_note_replies(data.get('Attributes').get('replies'))
+    }
