@@ -95,7 +95,7 @@
       async handleSubmit() {
         if (this.$refs.form.validate()) {
           if (this.isReply()) {
-            var response = await NotesRepository.addNoteReply(this.note);
+            var response = await NotesRepository.addNoteReply(this.options.noteId, this.note);
             EventBus.$emit('reply-added', response);
           } else {
             var response = await NotesRepository.createNote(this.note);

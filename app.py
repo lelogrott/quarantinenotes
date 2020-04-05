@@ -52,7 +52,7 @@ def list_notes():
             'content': item.get('content').get('S'),
             'author': item.get('author').get('S'),
             'country': item.get('country').get('S'),
-            'replies': format_note_replies(item.get('replies').get('L')),
+            'replies': format_note_replies(item.get('replies')),
             'createdAt': item.get('createdAt').get('S')
         })
     notes = sorted(notes, key=lambda note: parse(note['createdAt']), reverse=True)
@@ -167,7 +167,11 @@ def update_note(note_id):
     return make_response(jsonify(resp), 200, RESPONSE_HEADERS)
 
 def format_note_replies(notes):
+    if notes is None:
+        return []
+
     formatted_notes = []
+    notes = notes.get('L')
 
     for note in notes:
         formatted_note = {
