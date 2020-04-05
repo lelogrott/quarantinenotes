@@ -7,6 +7,7 @@ TODO
   * [ ] create "view note" page
   * [ ] display linebreaks (currently \n entered have no effect)
   * [x] allow replies on notes
+  * [ ] show number of replies on Inbox cards
   * [ ] integrate with watson to identify which language the note was written in
   * [ ] add filter by language
   * [ ] add filter by country

@@ -35,7 +35,7 @@
 
     <compose-note
       :key='composeReplyKey'
-      :options="this.replyOptions"
+      :options="this.replyOptions()"
     />
 
   </div>
@@ -47,8 +47,7 @@
   export default {
     data() {
       return {
-        composeReplyKey: 0,
-        replyOptions: {}
+        composeReplyKey: 0
       }
     },
     props: {
@@ -60,10 +59,6 @@
     mounted(){
       var vm = this;
       this.scrollToTop();
-      this.replyOptions = {
-        noteId: this.noteDetailsData.noteId,
-        placeholder: 'What do you think about it?'
-      };
 
       EventBus.$on('reply-added', function (reply) {
         vm.insertReply(reply.data);
@@ -71,8 +66,14 @@
       });
     },
     methods: {
+      replyOptions() {
+        return {
+          noteId: this.noteDetailsData.noteId,
+          placeholder: 'What do you think about it?'
+        };
+      },
       insertReply(reply) {
-        this.this.noteDetailsData.replies.push(reply);
+        this.noteDetailsData.replies.push(reply);
       },
       scrollToTop() {
         $('.scroll-top').on('click',function(){

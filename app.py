@@ -2,7 +2,6 @@ import os
 import boto3
 import uuid
 from time import gmtime, strftime
-from ast import literal_eval
 from dateutil.parser import *
 from flask import Flask, jsonify, request, make_response, json
 from flask_cors import CORS
@@ -135,15 +134,16 @@ def delete_note(note_id):
 
 @app.route("/notes/<string:note_id>", methods=["PUT"])
 def update_note(note_id):
-    reply = literal_eval(request.args.get('reply'))
+    reply = request.json.get('reply')
 
     reply_dynamo_store = {
         'noteId': {'S': uuid.uuid4().hex },
         'content': {'S': reply['content'] },
-        'author': {'S': reply['author'] },
-        'country': {'S': reply['country'] },
+        'author': {'S': reply['author'] or 'Anonymous' },
+        'country': {'S': reply['country'] or 'Unknown' },
         'createdAt': {'S': strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()) }
     }
+
     resp = client.update_item(
         TableName=NOTES_TABLE,
         Key={
