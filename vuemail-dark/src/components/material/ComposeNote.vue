@@ -90,7 +90,7 @@
     },
     methods: {
       isReply() {
-        return this.messageType === "NoteReply";
+        return this.options.noteId !== undefined;
       },
       async handleSubmit() {
         if (this.$refs.form.validate()) {
