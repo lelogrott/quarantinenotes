@@ -7,7 +7,23 @@ export default {
         content: "fourth update. still working on this",
         country: "BR",
         createdAt: "Sun, 23 Mar 2020 02:31:31 +0000",
-        noteId: "83fb02bbb5f84c22a4f3eba048cbdfac"
+        noteId: "83fb02bbb5f84c22a4f3eba048cbdfac",
+        replies: [
+          {
+            author: "Anonymous",
+            content: "reply n1.",
+            country: "US",
+            createdAt: "Sat, 04 Apr 2020 17:52:10 +0000",
+            noteId: "188c50b20e404578ae8d1bb18350bf5a"
+          },
+          {
+            author: "Anonymous",
+            content: "reply n2.",
+            country: "US",
+            createdAt: "Sat, 04 Apr 2020 17:58:05 +0000",
+            noteId: "a2dc4cfb0f6f42a49769732d187c7422"
+          }
+        ]
       },
       {
         author: "lelogrott",

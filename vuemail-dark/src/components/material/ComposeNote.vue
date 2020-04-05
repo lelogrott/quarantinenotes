@@ -33,7 +33,7 @@
                 :rules="noteRules"
                 required
                 id="mail-comment"
-                placeholder="How's the quarantine so far?"
+                :placeholder="options.placeholder"
               ></v-textarea>
               <button
                 :disabled="!valid"
@@ -73,11 +73,34 @@
         countries: this.$store.state.countriesData.countriesInfo
       }
     },
+    props: {
+      options: {
+        type: Object,
+        default: () => {
+          return {
+            placeholder: "How's the quarantine so far?",
+            noteId: undefined
+          }
+        }
+      },
+      messageType: {
+        type: String,
+        default: () => { return "Note" }
+      }
+    },
     methods: {
+      isReply() {
+        return this.messageType === "NoteReply";
+      },
       async handleSubmit() {
         if (this.$refs.form.validate()) {
-          var response = await NotesRepository.createNote(this.note);
-          EventBus.$emit('note-added', response)
+          if (this.isReply()) {
+            var response = await NotesRepository.addNoteReply(this.note);
+            EventBus.$emit('reply-added', response);
+          } else {
+            var response = await NotesRepository.createNote(this.note);
+            EventBus.$emit('note-added', response)
+          }
         }
       }
     }

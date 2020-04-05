@@ -16,11 +16,41 @@
         {{noteDetailsData.content}}
       </p>
     </div>
+
+
+    <div class="card-left-side-ui-design">
+      <div class="card-index active" v-for="(item,i) in this.noteDetailsData.replies" :key="i">
+        <div class="card-info">
+          <div class="card-head">
+            <h3><a>{{item.author}}</a></h3>
+            <div class="card-date">{{new Date(item.createdAt) | moment("MMM Do h:mmA") }}</div>
+          </div>
+          <a>{{getCountry(item.country)}}</a>
+          <div class="card-para">
+            {{item.content}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <compose-note
+      :key='composeReplyKey'
+      :options="this.replyOptions"
+    />
+
   </div>
 </template>
 
 <script>
+  import EventBus from './../../eventBus.js'
+
   export default {
+    data() {
+      return {
+        composeReplyKey: 0,
+        replyOptions: {}
+      }
+    },
     props: {
       noteDetailsData: {
         type : Object,
@@ -28,9 +58,22 @@
       }
     },
     mounted(){
+      var vm = this;
       this.scrollToTop();
+      this.replyOptions = {
+        noteId: this.noteDetailsData.noteId,
+        placeholder: 'What do you think about it?'
+      };
+
+      EventBus.$on('reply-added', function (reply) {
+        vm.insertReply(reply.data);
+        vm.composeReplyKey += 1;
+      });
     },
     methods: {
+      insertReply(reply) {
+        this.this.noteDetailsData.replies.push(reply);
+      },
       scrollToTop() {
         $('.scroll-top').on('click',function(){
             $('html, body').animate({

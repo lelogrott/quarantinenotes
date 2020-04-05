@@ -2,8 +2,9 @@ import os
 import boto3
 import uuid
 from time import gmtime, strftime
+from ast import literal_eval
 from dateutil.parser import *
-from flask import Flask, jsonify, request, make_response
+from flask import Flask, jsonify, request, make_response, json
 from flask_cors import CORS
 
 app = Flask(__name__)
@@ -51,6 +52,7 @@ def list_notes():
             'content': item.get('content').get('S'),
             'author': item.get('author').get('S'),
             'country': item.get('country').get('S'),
+            'replies': format_note_replies(item.get('replies').get('L')),
             'createdAt': item.get('createdAt').get('S')
         })
     notes = sorted(notes, key=lambda note: parse(note['createdAt']), reverse=True)
@@ -130,3 +132,51 @@ def delete_note(note_id):
     )
 
     return make_response(jsonify(resp), 200, RESPONSE_HEADERS)
+
+@app.route("/notes/<string:note_id>", methods=["PUT"])
+def update_note(note_id):
+    reply = literal_eval(request.args.get('reply'))
+
+    reply_dynamo_store = {
+        'noteId': {'S': uuid.uuid4().hex },
+        'content': {'S': reply['content'] },
+        'author': {'S': reply['author'] },
+        'country': {'S': reply['country'] },
+        'createdAt': {'S': strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime()) }
+    }
+    resp = client.update_item(
+        TableName=NOTES_TABLE,
+        Key={
+            'noteId': { 'S': note_id }
+        },
+        UpdateExpression="SET #attrName = list_append(if_not_exists(#attrName, :empty_list), :r)",
+        ExpressionAttributeNames={
+            "#attrName": "replies"
+        },
+        ExpressionAttributeValues={
+            ":r": {
+                "L": [{
+                    'M': reply_dynamo_store
+                }]
+            },
+            ":empty_list": { "L": [] }
+        },
+        ReturnValues='ALL_NEW'
+    )
+
+    return make_response(jsonify(resp), 200, RESPONSE_HEADERS)
+
+def format_note_replies(notes):
+    formatted_notes = []
+
+    for note in notes:
+        formatted_note = {
+            'author': note.get('M').get('author').get('S'),
+            'content': note.get('M').get('content').get('S'),
+            'country': note.get('M').get('country').get('S'),
+            'createdAt': note.get('M').get('createdAt').get('S'),
+            'noteId': note.get('M').get('noteId').get('S')
+        }
+        formatted_notes.append(formatted_note)
+
+    return formatted_notes
