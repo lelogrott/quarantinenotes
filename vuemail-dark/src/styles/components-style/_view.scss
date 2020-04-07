@@ -94,6 +94,7 @@ h2{
 
 .card-index:hover,.active {
    background: #2a324e!important;
+   cursor: pointer !important;
 
    &::before {visibility:visible;opacity: 1;}
 
