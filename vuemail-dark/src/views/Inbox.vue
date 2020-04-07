@@ -27,7 +27,7 @@
                 <div class="card-info">
                   <div class="card-head">
                     <h3><a>{{item.author}}</a></h3>
-                    <div class="card-date">{{new Date(item.createdAt) | moment("dddd, MMMM Do YYYY, h:mm:ss A") }}</div>
+                    <div class="card-date">{{new Date(item.createdAt) | moment("MMM Do h:mmA") }}</div>
                     <delete-note-button v-if="sysAdmin()" :noteId="item.noteId" />
                   </div>
                   <a>{{getCountry(item.country)}}</a>
