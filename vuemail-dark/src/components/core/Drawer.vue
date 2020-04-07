@@ -7,10 +7,12 @@
         <v-icon>mdi-menu</v-icon>
       </div> -->
 
-      <div class="logo">
-        <!-- <img src="assets/img/logo/quarantine_notes_icon.png" alt="logo"> -->
-        QUARANTINE NOTES
-      </div>
+      <a href="#">
+        <div class="logo">
+          <!-- <img src="assets/img/logo/quarantine_notes_icon.png" alt="logo"> -->
+          QUARANTINE NOTES
+        </div>
+      </a>
 
 
       <v-spacer />

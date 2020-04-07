@@ -17,33 +17,28 @@
       </v-layout>
 
       <v-layout v-else row wrap>
-        <v-flex lg4 md6 sm12 xs12>
-          <div class="card-left-side card-left-side-ui-design">
-            <div v-on:click="activate(i, item.noteId)"
-              v-bind:class="{active: item.noteId == selected}" class="card-index" v-for="(item,i) in notes" :key="i">
-              <div class="card-info">
-                <div class="card-head">
-                  <h3><a>{{item.author}}</a></h3>
-                  <div class="card-date">{{new Date(item.createdAt) | moment("MMM Do h:mmA") }}</div>
-                  <delete-note-button v-if="sysAdmin()" :noteId="item.noteId" />
-                </div>
-                <a>{{item.country}}</a>
-                <div class="card-para">
-                  {{item.content}}
+        <v-flex lg12 md12 sm12 xs12>
+          <div id="inbox-container" class="card-left-side card-left-side-ui-design">
+            <div v-for="(item,i) in notes" :key="i">
+              <single-mail-details v-if="item.noteId == selected" :noteDetailsData="notes[note]" />
+
+              <div v-else v-on:click="activate(i, item.noteId)"
+              v-bind:class="{active: item.noteId == selected}" class="card-index">
+                <div class="card-info">
+                  <div class="card-head">
+                    <h3><a>{{item.author}}</a></h3>
+                    <div class="card-date">{{new Date(item.createdAt) | moment("dddd, MMMM Do YYYY, h:mm:ss A") }}</div>
+                    <delete-note-button v-if="sysAdmin()" :noteId="item.noteId" />
+                  </div>
+                  <a>{{getCountry(item.country)}}</a>
+                  <div class="card-para">
+                    {{item.content}}
+                  </div>
                 </div>
               </div>
             </div>
-
-          </div>
-
-        </v-flex>
-
-        <v-flex lg8 md6 sm12 xs12>
-          <div class="card-right-side card-left-side-ui-design">
-            <single-mail-details :noteDetailsData="notes[note]" />
           </div>
         </v-flex>
-
       </v-layout>
     </v-container>
   </div>
@@ -84,6 +79,14 @@
       })
     },
     methods: {
+      getCountry(id) {
+        let countries = this.$store.state.countriesData.countriesInfo;
+        for (var i = countries.length - 1; i >= 0; i--) {
+          if (id == countries[i].id)
+            return countries[i].friendly_name;
+        }
+        return 'Unknown';
+      },
       sysAdmin() {
         return this.$route.query.sysAdmin == "true";
       },

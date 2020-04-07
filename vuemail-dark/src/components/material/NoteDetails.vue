@@ -59,6 +59,7 @@
     mounted(){
       var vm = this;
       this.scrollToTop();
+      // this.focusOnNote();
 
       EventBus.$on('reply-added', function (reply) {
         vm.insertReply(reply.data);
@@ -82,6 +83,11 @@
           }, 1500);
           return false;
         });
+      },
+      focusOnNote() {
+        $('html, body').animate({
+          scrollTop: $('.single-note-details-item').offset().top
+        }, 100);
       },
       getCountry(id) {
         let countries = this.$store.state.countriesData.countriesInfo;
