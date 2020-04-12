@@ -92,23 +92,20 @@ h2{
    @include easeInOut;
 }
 
-.card-index{
-   .card-head>h3>i {
-      padding-left: 10px;
-      font-size: 18px;
-      text-decoration: none;
-      color: #838ca1 !important;
-      font-style: normal;
-   }
+.card-index:hover,.active {
+   background: #2a324e!important;
+   cursor: pointer !important;
+   &::before {visibility:visible;opacity: 1;}
 
-   &:hover,.active {
-      background: #2a324e!important;
-      cursor: pointer !important;
+   .crad-head{h3{a{color: #fff!important;}}}
+   .card-para{color: #fff!important;}
+   .card-date{color: #87c2ff!important;}
+}
 
-      &::before {visibility:visible;opacity: 1;}
-
-      .crad-head{h3{a{color: #fff!important;}}}
-      .card-para{color: #fff!important;}
-      .card-date{color: #87c2ff!important;}
-   }
+.card-index .card-head h3 i {
+   padding-left: 10px;
+   font-size: 18px;
+   text-decoration: none;
+   color: #838ca1 !important;
+   font-style: normal;
 }
