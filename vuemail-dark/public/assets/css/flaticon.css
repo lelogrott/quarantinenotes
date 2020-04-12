@@ -23,7 +23,7 @@
 }
 
 [class^="flaticon-"]:before, [class*=" flaticon-"]:before,
-[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {
   font-family: Flaticon;
   font-size: 18px;
   font-style: normal;
@@ -38,3 +38,4 @@
 .flaticon-lines:before { content: "\f106"; }
 .flaticon-sent-mail:before { content: "\f107"; }
 .flaticon-speech-message:before { content: "\f108"; }
+.comment-icon:before { content: url(../img/comment-icon.svg);  }

@@ -26,7 +26,7 @@
               v-bind:class="{active: item.noteId == selected}" class="card-index">
                 <div class="card-info">
                   <div class="card-head">
-                    <h3><a>{{item.author}}</a></h3>
+                    <h3><a>{{item.author}}</a><i class="comment-icon"> {{ totalReplies(item) }} </i></h3>
                     <div class="card-date">{{new Date(item.createdAt) | moment("MMM Do h:mmA") }}</div>
                     <delete-note-button v-if="sysAdmin()" :noteId="item.noteId" />
                   </div>
@@ -79,6 +79,12 @@
       })
     },
     methods: {
+      totalReplies(note) {
+        if (note.replies === undefined)
+          return 0;
+
+        return note.replies.length;
+      },
       getCountry(id) {
         let countries = this.$store.state.countriesData.countriesInfo;
         for (var i = countries.length - 1; i >= 0; i--) {
