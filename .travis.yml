@@ -4,10 +4,11 @@ python:
 install:
   - apt-get install -y default-jre
   - yarn install
-  - yarn run test-db&; export DYNAMO_PID=$!
+  - yarn run test-db &
+  - sleep 5
   - pip install pipenv
   - pipenv install --dev --system
 script:
-  - pytest --cov=. --ignore=vuemail-dark
+  - pytest --cov-config=.coveragerc --ignore=vuemail-dark
 after_script:
-  - kill -9 $DYNAMO_PID
+  - coverage report
