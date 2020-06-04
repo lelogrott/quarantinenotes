@@ -28,10 +28,8 @@ def test_creating_a_reply_to_a_note(client):
     resp = client.post('/notes', json=data)
     assert resp.status_code == 201
 
-    reply_data = dict(reply=data)
-
-    resp = client.put(f"/notes/{resp.json['noteId']}", json=reply_data)
-    assert resp.status_code == 200
+    resp = client.post(f"/notes/{resp.json['noteId']}/replies", json=data)
+    assert resp.status_code == 201
 
 
 def test_deleting_a_note(client):
@@ -51,6 +49,6 @@ def test_deleting_a_note(client):
 
 
 def test_listing_all_notes(client):
-    resp = client.get('/')
+    resp = client.get('/notes')
     assert type(resp.json) is list
     assert resp.status_code == 200

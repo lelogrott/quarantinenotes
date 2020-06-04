@@ -33,7 +33,7 @@ RESPONSE_HEADERS =  {
 }
 
 
-@app.route("/", methods=["GET"])
+@app.route("/notes", methods=["GET"])
 def list_notes():
     country = request.args.get('country')
     if country:
@@ -139,9 +139,9 @@ def delete_note(note_id):
 
     return make_response(jsonify(resp), 200, RESPONSE_HEADERS)
 
-@app.route("/notes/<string:note_id>", methods=["PUT"])
+@app.route("/notes/<string:note_id>/replies", methods=["POST"])
 def creata_note_reply(note_id):
-    reply = request.json.get('reply')
+    reply = request.json
 
     reply_dynamo_store = {
         'noteId': {'S': uuid.uuid4().hex },
@@ -174,7 +174,7 @@ def creata_note_reply(note_id):
     print(">> ADDING REPLY TO NOTE " + note_id)
     print(json_reply.data)
 
-    return make_response(json_reply, 200, RESPONSE_HEADERS)
+    return make_response(json_reply, 201, RESPONSE_HEADERS)
 
 def format_note_replies(notes):
     if notes is None:

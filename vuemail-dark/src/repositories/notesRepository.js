@@ -3,7 +3,7 @@ import Repository from './repository'
 const resource = '/notes'
 export default {
   get() {
-    return Repository.get();
+    return Repository.get(`${resource}`);
   },
   getNote(noteId) {
     return Repository.get(`${resource}/${noteId}`);
@@ -15,6 +15,6 @@ export default {
     return Repository.delete(`${resource}/${noteId}?pwd=${password}`);
   },
   addNoteReply(noteId, payload) {
-    return Repository.put(`${resource}/${noteId}`, { reply: payload })
+    return Repository.post(`${resource}/${noteId}/replies`, payload)
   }
 }

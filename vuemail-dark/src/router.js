@@ -5,13 +5,6 @@ import Meta from 'vue-meta'
 
 // import view
 import Inbox from '@/views/Inbox'
-import Starred from '@/views/Starred'
-import SentMail from '@/views/SentMail'
-import Draft from '@/views/Draft'
-import Chat from '@/views/Chat'
-import Places from '@/views/Places'
-import Trash from '@/views/Trash'
-import Spam from '@/views/Spam'
 
 Vue.use(Router)
 
@@ -23,40 +16,6 @@ const router = new Router({
       path: '/',
       name: 'inbox',
       component: Inbox
-    },
-    {
-      path: '/starred',
-      name: 'starred',
-      component: Starred
-    },
-    {
-      path: '/sentmail',
-      name: 'forms',
-      component: SentMail
-    },
-    {
-      path: '/draft',
-      component: Draft
-    },
-    {
-      path: '/chat',
-      name: 'chat',
-      component: Chat
-    },
-    {
-      path: '/places',
-      name: 'places',
-      component: Places
-    },
-    {
-      path: '/trash',
-      name: 'trash',
-      component: Trash
-    },
-    {
-      path: '/spam',
-      name: 'spam',
-      component: Spam
     }
   ],
   scrollBehavior (to, from, savedPosition) {

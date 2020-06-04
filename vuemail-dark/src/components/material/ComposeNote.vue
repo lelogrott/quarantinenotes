@@ -53,7 +53,6 @@
 <script>
   import EventBus from './../../eventBus.js'
   import RepositoryFactory from './../../repositories'
-  console.log(process.env.VUE_APP_API_URL)
   const NotesRepository = RepositoryFactory.get('notes')
 
   export default {

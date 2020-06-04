@@ -8,6 +8,6 @@ install:
   - pip install pipenv
   - pipenv install --dev --system
 script:
-  - pytest --cov=.
+  - pytest --cov=. --ignore=vuemail-dark
 after_script:
   - kill -9 $DYNAMO_PID
