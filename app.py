@@ -8,16 +8,8 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://quarantinenotes.com"}})
 
-NOTES_TABLE = os.environ['NOTES_TABLE']
 IS_OFFLINE = os.environ.get('IS_OFFLINE')
-RESPONSE_HEADERS =  {
-    'Access-Control-Allow-Origin': 'https://quarantinenotes.com',
-    'Access-Control-Allow-Headers': '*',
-    'Access-Control-Allow-Credentials': 'true',
-    'Content-Type': 'application/json'
-}
 
 if IS_OFFLINE:
     client = boto3.client(
@@ -25,8 +17,20 @@ if IS_OFFLINE:
         region_name='localhost',
         endpoint_url='http://localhost:8000'
     )
+    ORIGIN = '*'
 else:
     client = boto3.client('dynamodb')
+    ORIGIN = 'https://quarantinenotes.com'
+
+
+NOTES_TABLE = os.environ['NOTES_TABLE']
+CORS(app, resources={r"/*": {"origins": ORIGIN}})
+RESPONSE_HEADERS =  {
+    'Access-Control-Allow-Origin': ORIGIN,
+    'Access-Control-Allow-Headers': '*',
+    'Access-Control-Allow-Credentials': 'true',
+    'Content-Type': 'application/json'
+}
 
 
 @app.route("/", methods=["GET"])
