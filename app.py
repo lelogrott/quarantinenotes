@@ -104,15 +104,17 @@ def create_note():
             'createdAt': {'S': created_at }
         }
     )
-
+    json_note = jsonify({
+        'noteId': note_id,
+        'content': content,
+        'author': author,
+        'country': country,
+        'createdAt': created_at
+    })
+    print(">> ADDING NOTE")
+    print(json_note.data)
     return make_response(
-        jsonify({
-            'noteId': note_id,
-            'content': content,
-            'author': author,
-            'country': country,
-            'createdAt': created_at
-        }),
+        json_note,
         200,
         RESPONSE_HEADERS
     )
@@ -163,8 +165,11 @@ def update_note(note_id):
         },
         ReturnValues='ALL_NEW'
     )
+    json_reply = jsonify(format_response(resp)['replies'].pop())
+    print(">> ADDING REPLY TO NOTE " + note_id)
+    print(json_reply.data)
 
-    return make_response(jsonify(format_response(resp)['replies'].pop()), 200, RESPONSE_HEADERS)
+    return make_response(json_reply, 200, RESPONSE_HEADERS)
 
 def format_note_replies(notes):
     if notes is None:
