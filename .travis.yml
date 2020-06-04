@@ -4,7 +4,7 @@ python:
 install:
   - apt-get install -y default-jre
   - yarn install
-  - yarn run test-db&; export DYNAMOD_PID=$!
+  - yarn run test-db&; export DYNAMO_PID=$!
   - pip install pipenv
   - pipenv install --dev --system
 script:
