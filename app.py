@@ -6,6 +6,7 @@ from dateutil.parser import *
 from flask import Flask, jsonify, request, make_response, json
 from flask_cors import CORS
 
+
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "https://quarantinenotes.com"}})
 
@@ -115,7 +116,7 @@ def create_note():
     print(json_note.data)
     return make_response(
         json_note,
-        200,
+        201,
         RESPONSE_HEADERS
     )
 
@@ -135,7 +136,7 @@ def delete_note(note_id):
     return make_response(jsonify(resp), 200, RESPONSE_HEADERS)
 
 @app.route("/notes/<string:note_id>", methods=["PUT"])
-def update_note(note_id):
+def creata_note_reply(note_id):
     reply = request.json.get('reply')
 
     reply_dynamo_store = {

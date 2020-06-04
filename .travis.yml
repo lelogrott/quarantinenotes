@@ -1,0 +1,13 @@
+language: python
+python:
+  - "3.6"
+install:
+  - apt-get install -y default-jre
+  - yarn install
+  - yarn run test-db&; export DYNAMOD_PID=$!
+  - pip install pipenv
+  - pipenv install --dev --system
+script:
+  - pytest --cov=.
+after_script:
+  - kill -9 $DYNAMO_PID

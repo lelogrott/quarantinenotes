@@ -119,3 +119,4 @@ vuemail-dark/node_modules/
 .dynamodb/*
 
 
+.coverage

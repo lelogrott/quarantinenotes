@@ -1,7 +1,14 @@
 service: serverless-flask
 package:
   exclude:
-    - '!./vuemail-dark/**'
+    - vuemail-dark/**
+    - node_modules/**
+    - .serverless/**
+    - .git/**
+    - '*.yml'
+    - tests/**
+
+
 
 plugins:
   - serverless-python-requirements
@@ -20,11 +27,12 @@ custom:
       migrate: true
     stages:
       - dev
+      - test
 
 provider:
   name: aws
   runtime: python3.6
-  stage: dev
+  stage: ${opt:stage, 'dev'}
   region: us-east-1
   profile: quarantineNotesProfile
   iamRoleStatements:
@@ -41,6 +49,7 @@ provider:
   environment:
     NOTES_TABLE: ${self:custom.tableName}
     PWD: fakepwd
+
 
 functions:
   app:
@@ -72,6 +81,6 @@ resources:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
         TableName: ${self:custom.tableName}
-        DeletionPolicy: Retain
-        UpdateReplacePolicy: Retain
+      DeletionPolicy: Retain
+      UpdateReplacePolicy: Retain
 
