@@ -82,6 +82,7 @@ And access the Web interface on http://localhost:8080
   * [ ] add filter by language
   * [ ] add filter by country
   * [x] add spinner while waiting for Inbox component to get notes from aws
+  * [ ] write frontend tests
 
 
 ## Running tests
