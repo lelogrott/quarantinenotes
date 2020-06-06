@@ -3,5 +3,5 @@
 
 source = .
 omit =
-    vuemail-dark/*
+    frontend/*
     tests/*
