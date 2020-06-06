@@ -6,17 +6,10 @@ from dateutil.parser import *
 from flask import Flask, jsonify, request, make_response, json
 from flask_cors import CORS
 
-app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "https://quarantinenotes.com"}})
 
-NOTES_TABLE = os.environ['NOTES_TABLE']
+app = Flask(__name__)
+
 IS_OFFLINE = os.environ.get('IS_OFFLINE')
-RESPONSE_HEADERS =  {
-    'Access-Control-Allow-Origin': 'https://quarantinenotes.com',
-    'Access-Control-Allow-Headers': '*',
-    'Access-Control-Allow-Credentials': 'true',
-    'Content-Type': 'application/json'
-}
 
 if IS_OFFLINE:
     client = boto3.client(
@@ -24,11 +17,23 @@ if IS_OFFLINE:
         region_name='localhost',
         endpoint_url='http://localhost:8000'
     )
+    ORIGIN = '*'
 else:
     client = boto3.client('dynamodb')
+    ORIGIN = 'https://quarantinenotes.com'
 
 
-@app.route("/", methods=["GET"])
+NOTES_TABLE = os.environ['NOTES_TABLE']
+CORS(app, resources={r"/*": {"origins": ORIGIN}})
+RESPONSE_HEADERS =  {
+    'Access-Control-Allow-Origin': ORIGIN,
+    'Access-Control-Allow-Headers': '*',
+    'Access-Control-Allow-Credentials': 'true',
+    'Content-Type': 'application/json'
+}
+
+
+@app.route("/notes", methods=["GET"])
 def list_notes():
     country = request.args.get('country')
     if country:
@@ -115,7 +120,7 @@ def create_note():
     print(json_note.data)
     return make_response(
         json_note,
-        200,
+        201,
         RESPONSE_HEADERS
     )
 
@@ -134,9 +139,9 @@ def delete_note(note_id):
 
     return make_response(jsonify(resp), 200, RESPONSE_HEADERS)
 
-@app.route("/notes/<string:note_id>", methods=["PUT"])
-def update_note(note_id):
-    reply = request.json.get('reply')
+@app.route("/notes/<string:note_id>/replies", methods=["POST"])
+def creata_note_reply(note_id):
+    reply = request.json
 
     reply_dynamo_store = {
         'noteId': {'S': uuid.uuid4().hex },
@@ -169,7 +174,7 @@ def update_note(note_id):
     print(">> ADDING REPLY TO NOTE " + note_id)
     print(json_reply.data)
 
-    return make_response(json_reply, 200, RESPONSE_HEADERS)
+    return make_response(json_reply, 201, RESPONSE_HEADERS)
 
 def format_note_replies(notes):
     if notes is None:

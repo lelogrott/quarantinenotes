@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-const baseDomain = 'https://kej2ab8p44.execute-api.us-east-1.amazonaws.com'
-const baseURL = `${baseDomain}/dev`
+const baseURL = process.env.VUE_APP_API_URL
 
 export default axios.create({
   baseURL,
